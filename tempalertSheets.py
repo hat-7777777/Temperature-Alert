@@ -8,11 +8,10 @@ client = gspread.authorize(creds)
 sheet = client.open("Temperature Data Thing 3: The Party").sheet1
 index = 0
 temp = ["Yes", "No"]
+
 while True:
     num = random.randint(0,100)
-    boolean = random.choice(temp)
-
     index += 1
-    entry = [num]
+    
     sheet.update_cell(index, 1, num)
     time.sleep(1)
