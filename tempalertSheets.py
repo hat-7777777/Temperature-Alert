@@ -13,7 +13,6 @@ dhtDevice = adafruit_dht.DHT11(board.D17)
 
 def main():
     global index
-    bruh = "No data"
     try:
         temperature_c = dhtDevice.temperature
 
@@ -27,4 +26,4 @@ def main():
 
 while True:
     main()
-    time.sleep(10)
+    time.sleep(60)
