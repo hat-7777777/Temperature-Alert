@@ -21,15 +21,22 @@ def main():
         try:
             temperature_c = dhtDevice.temperature
             temp.append(temperature_c)
-        except RuntimeError as error:
-            print(error.args[0])
+        except:
+            ## print(error.args[0])
+            print("Sensor exception (This is normal, don't panic)")
 
-        time.sleep(10)
+        time.sleep(2)
 
 while True:
     main()
-    out = statistics.mean(temp)
-    sheet.update_cell(index, 1, out)
+    if len(temp) == 0:
+        out = "-"
+    else:
+        out = statistics.mean(temp)
+    try:
+        sheet.update_cell(index, 1, out)
+    except:
+        print("Something went wrong with updating sheet (Blame Google)")
     moment = datetime.now().strftime('%H:%M:%S')
     sheet.update_cell(index, 2, str(moment))
     index += 1
